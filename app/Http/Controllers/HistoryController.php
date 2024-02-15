@@ -17,8 +17,17 @@ class HistoryController extends Controller
     //get all histories
     public function index()
     {
-        $histories = History::all();
-        return response()->json($histories);
+        $userLogin = Auth::user()->load([
+            'roles:name'
+        ]);
+
+
+
+       $histories = $userLogin->historiasComoPaciente()->get();
+        return Inertia::render('History/index',
+        [
+            'histories' => $histories
+        ]);
     }
 
     //create a new history

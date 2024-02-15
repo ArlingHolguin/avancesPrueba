@@ -5,16 +5,16 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 
 
 const props = defineProps({
-    patients: {
+    histories: {
         type: Array,
         default: () => []
     }
 });
 
 console.log(
-    props.patients.filter(patient => patient.id === 7)
+    props.histories)
 
-);
+;
 
 </script>
 
@@ -22,7 +22,7 @@ console.log(
     <AppLayout title="Pacientes">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                Pacientes
+                Historias clínicas
             </h2>
         </template>
 
@@ -39,15 +39,15 @@ console.log(
                                             <tr>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Nombre
+                                                    Consecutivo
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Apellido
+                                                    Firma
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Identificacion
+                                                    Fecha
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -56,23 +56,22 @@ console.log(
                                             </tr>
                                         </thead>
                                         <tbody class="bg-white divide-y divide-gray-200">
-                                            <tr v-for="patient in patients" :key="patient.id">
+                                            <tr v-for="history in histories" :key="history.id">
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="flex items center">
                                                         <div class="text-sm font-medium text-gray-900">
-                                                            {{ patient.name }}
+                                                            {{ history.consecutivo_paciente }}
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">{{ patient.last_name }}</div>
+                                                    <div class="text-sm text-gray-900">{{ history.firmado_por_paciente === 0 ? 'Firmado': 'Pendiente' }}</div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">{{ patient.identification }}</div>
+                                                    <div class="text-sm text-gray-900">{{ history.fecha_hora }}</div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Crear
-                                                        historia</a>
+                                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Firmar</a>
                                                 </td>
                                             </tr>
                                         </tbody>
