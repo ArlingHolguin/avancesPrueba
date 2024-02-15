@@ -38,7 +38,7 @@ const fetchPatients = async () => {
     if (searchQuery.value.length > 1) {
 
         try {
-            const response = await axios.get(`http://localhost:8002/api/v1/pacientes?query=${searchQuery.value}`);
+            const response = await axios.get(`/api/v1/pacientes?query=${searchQuery.value}`);
             patients.value = response.data;
 
         } catch (error) {
