@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Models\User;
 use App\Http\Controllers\HistoryController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,25 +77,17 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard',[
-            'roles' => auth()->user()->roles,
-            'permissions' => auth()->user()->permissions,
-        ]);
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // Ruta para crear una historia clínica
-Route::get('/history/create', [HistoryController::class, 'create'])->name('history.create');
-// Ruta para guardar una historia clínica
+    Route::get('/history/create', [HistoryController::class, 'create'])->name('history.create');
+    // Ruta para guardar una historia clínica
 
 
-// Ruta que retorna todas las historias clínicas de un user (paciente, doctor, enfermera)
-Route::get('/history', [HistoryController::class, 'index'])->name('history.index');
+    // Ruta que retorna todas las historias clínicas de un user (paciente, doctor, enfermera)
+    Route::get('/history', [HistoryController::class, 'index'])->name('history.index');
 
-// Ruta para guardar una historia clínica
-Route::post('/history/store', [HistoryController::class, 'store'])->name('history.store');
-
-
-
+    // Ruta para guardar una historia clínica
+    Route::post('/history/store', [HistoryController::class, 'store'])->name('history.store');
 });
 

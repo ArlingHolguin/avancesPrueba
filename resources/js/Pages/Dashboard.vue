@@ -1,8 +1,5 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
-import Welcome from '@/Components/Welcome.vue';
-
-
 
 </script>
 
@@ -16,8 +13,13 @@ import Welcome from '@/Components/Welcome.vue';
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
-                    Hola
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-8">
+                    <div>
+                        <a class="w-full md:w-1/4 float-end text-center text-lg font-medium bg-indigo-800 hover:bg-indigo-950 rounded-lg text-white py-1 px-4"
+                            href="">
+                            Crear Historia Clínica
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
