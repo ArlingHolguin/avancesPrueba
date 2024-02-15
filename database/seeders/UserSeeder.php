@@ -36,6 +36,7 @@ class UserSeeder extends Seeder
             'remember_token' => Str::random(10),
             'profile_photo_path' => null,
             'current_team_id' => null,
+            'is_first_login' => false,
         ]);
         $admin->assignRole('admin');
         Location::factory()->create(['user_id' => $admin->id]);
@@ -55,6 +56,7 @@ class UserSeeder extends Seeder
             'remember_token' => Str::random(10),
             'profile_photo_path' => null,
             'current_team_id' => null,
+            'is_first_login' => false,
         ]);
         $profesional->assignRole('profesional');
         Location::factory()->create(['user_id' => $profesional->id]);
@@ -74,6 +76,7 @@ class UserSeeder extends Seeder
            'remember_token' => Str::random(10),
            'profile_photo_path' => null,
            'current_team_id' => null,
+            'is_first_login' => false,
        ]);
        $patient->assignRole('patient');
        Location::factory()->create(['user_id' => $patient->id]);
