@@ -88,7 +88,7 @@ class UserSeeder extends Seeder
         });
 
         // Crear el resto como pacientes
-        User::factory()->count(7)->create()->each(function ($user) {
+        User::factory()->count(100)->create()->each(function ($user) {
             $user->assignRole('patient');
             Location::factory()->create(['user_id' => $user->id]);
         });

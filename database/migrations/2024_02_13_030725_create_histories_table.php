@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('patient_id')->constrained('users');
             
             $table->timestamp('fecha_hora');
-            $table->integer('consecutivo_paciente');
+            $table->string('consecutivo_paciente');
             $table->text('estado_paciente');
             $table->text('antecedentes')->nullable();
             $table->text('evolucion_final')->nullable();
