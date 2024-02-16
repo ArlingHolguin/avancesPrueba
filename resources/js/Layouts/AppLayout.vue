@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { Head, Link, router } from '@inertiajs/vue3';
 import ApplicationMark from '@/Components/ApplicationMark.vue';
 import Banner from '@/Components/Banner.vue';
@@ -12,7 +12,7 @@ import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 defineProps({
     title: String,
 });
-
+const dropdownOpen = ref(false);
 const showingNavigationDropdown = ref(false);
 
 const switchToTeam = (team) => {
@@ -26,8 +26,14 @@ const switchToTeam = (team) => {
 const logout = () => {
     router.post(route('logout'));
 };
+onMounted(() => {
+  window.Echo.channel('history-tracker')
+    .listen('HistoriaCreada', (e) => {
+      console.log('Evento recibido:', e);
+      // Lógica adicional aquí
+    });
+});
 
-const dropdownOpen = ref(false);
 </script>
 
 <template>
