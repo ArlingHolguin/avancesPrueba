@@ -10,6 +10,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
+
 class HistoriaCreada implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
@@ -29,13 +30,10 @@ class HistoriaCreada implements ShouldBroadcast
      *
      * @return \Illuminate\Broadcasting\Channel|array
      */
-    // public function broadcastOn()
-    // {
-    //     return new PrivateChannel('history-tracker');
-    // }
-
     public function broadcastOn()
     {
-        return new PrivateChannel('history-tracker.' . $this->historiaClinica->pacienteId);
+        return new PrivateChannel('history-tracker');
     }
+
+
 }
