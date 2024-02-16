@@ -27,5 +27,6 @@ class SendHistoryNotyListener
     public function handle(HistoriaCreada $event)
     {
         //
+
     }
 }

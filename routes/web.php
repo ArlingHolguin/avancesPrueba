@@ -19,10 +19,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/fire', function () {
-    event(new App\Events\HistoriaCreada);
-    return 'event fired';
-});
+
 
 Route::get('/', function () {
     // $roles = Spatie\Permission\Models\Role::all();

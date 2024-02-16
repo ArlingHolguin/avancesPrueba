@@ -29,8 +29,13 @@ class HistoriaCreada implements ShouldBroadcast
      *
      * @return \Illuminate\Broadcasting\Channel|array
      */
+    // public function broadcastOn()
+    // {
+    //     return new PrivateChannel('history-tracker');
+    // }
+
     public function broadcastOn()
     {
-        return new Channel('history-tracker');
+        return new PrivateChannel('history-tracker.' . $this->historiaClinica->pacienteId);
     }
 }

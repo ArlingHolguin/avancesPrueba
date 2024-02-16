@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, defineProps } from 'vue';
 import { Head, Link, router } from '@inertiajs/vue3';
 import ApplicationMark from '@/Components/ApplicationMark.vue';
 import Banner from '@/Components/Banner.vue';
@@ -10,6 +10,7 @@ import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 
 
 defineProps({
+    // Tus props aquí
     title: String,
 });
 const dropdownOpen = ref(false);
@@ -27,12 +28,13 @@ const logout = () => {
     router.post(route('logout'));
 };
 onMounted(() => {
-  window.Echo.channel('history-tracker')
-    .listen('HistoriaCreada', (e) => {
-      console.log('Evento recibido:', e);
-      // Lógica adicional aquí
-    });
-});
+    const pacienteId = 6;
+    window.Echo.private(`historia-clinica.${pacienteId}`)
+        .listen('.HistoriaCreada', (e) => {
+            // Mostrar notificación
+            console.log('Nueva historia clínica:');
+        });
+})
 
 </script>
 

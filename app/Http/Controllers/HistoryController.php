@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\HistoriaCreada;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\History;
@@ -74,6 +75,8 @@ class HistoryController extends Controller
         $history->fecha_hora = $request->fecha_hora;
 
         $history->save();
+        // evento para notificar al paciente que se ha creado una historia
+        event(new HistoriaCreada($history));
         // retornar un mensaje de exito
         return response()->json(['message' => 'Historia creada exitosamente', 'status' => 200]);
 
